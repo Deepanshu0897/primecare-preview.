@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | Prime Care Services Inc</title>
+<meta name="description" content="Book a free consultation with Prime Care Services. Call (604) 865-1727 or send us a message.">
+<link rel="icon" href="assets/logo.png">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="brand">
+      <img src="assets/logo.png" alt="" class="brand-mark">
+      Prime Care Services
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="careers.html">Careers</a></li>
+      <li><a href="contact.html" aria-current="page">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="tel:+16048651727" class="nav-phone">(604) 865-1727</a>
+      <a href="contact.html" class="btn btn-primary">Book a Free Consult</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <div class="page-header">
+    <div class="eyebrow-line"><span class="dot"></span> Contact Us</div>
+    <h1>Let's find the right care for your family.</h1>
+    <p class="lede" style="font-size:1.1rem;">Reach out for a free, no-obligation consultation — or to ask any question at all. We typically respond within one business day.</p>
+  </div>
+
+  <section class="section">
+    <div class="contact-grid">
+
+      <div class="reveal">
+        <div class="info-card">
+          <h3>Call us</h3>
+          <a href="tel:+16048651727">(604) 865-1727</a>
+        </div>
+        <div class="info-card">
+          <h3>Email us</h3>
+          <a href="mailto:admin@primecares.ca">admin@primecares.ca</a>
+        </div>
+        <div class="info-card">
+          <h3>Visit us</h3>
+          <p style="margin:0;">5307 Victoria Drive #698<br>Vancouver, British Columbia V5P 3V6</p>
+        </div>
+        <div class="info-card">
+          <h3>Hours</h3>
+          <p style="margin:0;">Open 24 hours — every day</p>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <form class="care-form" action="https://formspree.io/f/meaqdwrn" method="POST">
+          <input type="hidden" name="_subject" value="New inquiry from primecares.ca contact form">
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+          <div class="field-row">
+            <div class="field">
+              <label for="name">Full name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="field">
+              <label for="phone">Phone number</label>
+              <input type="tel" id="phone" name="phone" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="field">
+            <label for="interest">I'm reaching out about</label>
+            <select id="interest" name="interest">
+              <option>In-home care for a family member</option>
+              <option>Healthcare staffing for a facility</option>
+              <option>Career opportunities</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Tell us a bit about your situation</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <p class="form-note">By submitting, you agree to be contacted by Prime Care Services regarding your inquiry.</p>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+          <div class="form-status" role="status"></div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <a href="index.html" class="brand">
+        <img src="assets/logo.png" alt="" class="brand-mark">
+        Prime Care Services
+      </a>
+      <p style="max-width: 32ch; font-size:0.9rem;">Compassionate in-home care and healthcare staffing across British Columbia.</p>
+    </div>
+    <div>
+      <h4>Site</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+16048651727">(604) 865-1727</a></li>
+        <li><a href="mailto:admin@primecares.ca">admin@primecares.ca</a></li>
+        <li>5307 Victoria Drive #698<br>Vancouver, BC V5P 3V6</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Areas We Serve</h4>
+      <div class="area-chips">
+        <span>Vancouver</span><span>Surrey</span><span>Burnaby</span><span>Langley</span>
+        <span>Coquitlam</span><span>Abbotsford</span><span>Victoria</span><span>Kelowna</span>
+        <span>+ 11 more</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Prime Care Services Inc. All rights reserved.</span>
+    <span>Licensed home health care service — British Columbia</span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
