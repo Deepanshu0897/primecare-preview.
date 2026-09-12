@@ -10,12 +10,23 @@ services.html   In-home care services + facility staffing
 about.html      Story, values, team
 careers.html    Open roles + apply CTA
 contact.html    Contact form (Formspree) + info
-css/styles.css  All styles, design tokens, animations
-js/main.js      Nav toggle, scroll reveal, hero animation, form handling
-assets/logo.png Your logo
+styles.css      All styles, design tokens, animations
+main.js         Nav toggle, scroll reveal, hero animation, form handling
+logo.png        Your logo
 ```
 
+Everything lives at one level — no subfolders. This is deliberate: GitHub's web upload tool doesn't reliably preserve folder structure when you drag in files, so keeping everything flat avoids that problem entirely.
+
 No build step — plain HTML/CSS/JS. Works as-is on GitHub Pages.
+
+## Publishing to GitHub Pages
+
+1. Create a new repository on GitHub, public.
+2. Click "uploading an existing file" (on a fresh repo) or "Add file → Upload files".
+3. Drag in all 9 files from this folder at once: the 5 `.html` files, `styles.css`, `main.js`, `logo.png`, and `README.md`. Since there are no subfolders, plain drag-and-drop works correctly here — commit.
+4. Go to the repo's **Settings → Pages**.
+5. Under "Build and deployment", set **Source** to `Deploy from a branch`, branch `main`, folder `/ (root)`. Save.
+6. GitHub gives you a URL like `https://yourusername.github.io/repo-name/` within a minute or two.
 
 ## Before you publish: 2 things to set up
 
@@ -37,16 +48,9 @@ To make it actually deliver messages to your inbox:
 
 ### 2. Double-check the details
 
-Search each HTML file for anything that needs updating: phone number, email, address, service areas, and the two placeholder testimonials on the homepage (swap in real reviews once you have more — see the SEO review notes for why that matters).
+Search each HTML file for anything that needs updating: phone number, email, address, service areas, and the two placeholder testimonials on the homepage (swap in real reviews once you have more).
 
-## Publishing to GitHub Pages
-
-1. Create a new repository on GitHub (e.g. `primecare-website`), public.
-2. Upload all files in this folder to the repository, keeping the folder structure intact (`css/`, `js/`, `assets/` as subfolders).
-   - Easiest way: on the repo page, click **Add file → Upload files**, drag in everything, commit.
-3. Go to the repo's **Settings → Pages**.
-4. Under "Build and deployment", set **Source** to `Deploy from a branch`, branch `main`, folder `/ (root)`. Save.
-5. GitHub gives you a URL like `https://yourusername.github.io/primecare-website/` within a minute or two.
+Note: the contact form's Formspree endpoint is already live (`formspree.io/f/meaqdwrn`) — no action needed there unless you want to change which inbox it delivers to.
 
 ## Using your own domain (primecares.ca)
 
