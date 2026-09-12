@@ -104,10 +104,37 @@ function initContactForm() {
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    const name = form.querySelector('#name');
+    const phone = form.querySelector('#phone');
+    const email = form.querySelector('#email');
+
+    // Required: name + phone (+ email)
+    if (!name.value.trim() || name.value.trim().length < 2) {
+      status.textContent = 'Please enter your full name.';
+      status.className = 'form-status error';
+      name.focus();
+      return;
+    }
+    if (!phone.value.trim() || phone.value.replace(/\D/g, '').length < 7) {
+      status.textContent = 'Please enter a valid phone number.';
+      status.className = 'form-status error';
+      phone.focus();
+      return;
+    }
+    if (!email.value.trim() || !email.checkValidity()) {
+      status.textContent = 'Please enter a valid email address.';
+      status.className = 'form-status error';
+      email.focus();
+      return;
+    }
+
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
     submitBtn.textContent = 'Sending…';
     submitBtn.disabled = true;
+    status.className = 'form-status';
+    status.textContent = '';
 
     try {
       const response = await fetch(form.action, {
@@ -121,11 +148,16 @@ function initContactForm() {
         status.textContent = "Thank you — we've received your message and will reach out within one business day.";
         status.className = 'form-status success';
       } else {
-        status.textContent = 'Something went wrong sending your message. Please call us directly at (604) 865-1727.';
+        let msg = 'Something went wrong sending your message. Please call us at (604) 865-1727 or message us on WhatsApp.';
+        try {
+          const data = await response.json();
+          if (data && data.error) msg = data.error;
+        } catch (_) {}
+        status.textContent = msg;
         status.className = 'form-status error';
       }
     } catch (err) {
-      status.textContent = 'Something went wrong sending your message. Please call us directly at (604) 865-1727.';
+      status.textContent = 'Unable to send right now. Please call (604) 865-1727 or use WhatsApp.';
       status.className = 'form-status error';
     } finally {
       submitBtn.textContent = originalText;
