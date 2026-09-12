@@ -138,3 +138,20 @@ function initContactForm() {
     }
   });
 }
+
+
+/* Soft ambient shape parallax */
+function initAmbient() {
+  const shapes = document.querySelectorAll('.ambient-shapes span');
+  if (!shapes.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  function update() {
+    const y = window.scrollY;
+    shapes.forEach(s => {
+      const depth = parseFloat(s.dataset.depth || '0.2');
+      s.style.transform = `translate3d(0, ${y * depth * 0.35}px, 0)`;
+    });
+  }
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+}
+document.addEventListener('DOMContentLoaded', initAmbient);
