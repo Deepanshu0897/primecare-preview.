@@ -7,9 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initReveal();
   initHeroScrollAnimation();
   initContactForm();
+  initGradientWash();
 });
 
-/* Mobile nav toggle */
+/* Mobile nav — full-screen slide-over */
 function initNav() {
   const toggle = document.querySelector('.nav-toggle');
   const links = document.querySelector('.nav-links');
@@ -25,11 +26,12 @@ function initNav() {
     a.addEventListener('click', () => {
       links.classList.remove('open');
       document.body.classList.remove('menu-open');
+      toggle.setAttribute('aria-expanded', 'false');
     });
   });
 }
 
-/* Restrained scroll-reveal: fades sections in once, on entry */
+/* Scroll reveal */
 function initReveal() {
   const items = document.querySelectorAll('.reveal');
   if (!items.length) return;
@@ -46,18 +48,12 @@ function initReveal() {
         io.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
   items.forEach(el => io.observe(el));
 }
 
-/*
-  The single orchestrated motion moment (home hero only):
-  as the visitor scrolls through the hero, the illustration's layers
-  (home outline -> caregiver -> senior -> warmth glow) settle into place
-  with a gentle parallax drift, and the blob frame softens its shape.
-  This intentionally does NOT run on every section — just once, here.
-*/
+/* Hero illustration parallax (home only) */
 function initHeroScrollAnimation() {
   const stage = document.querySelector('[data-hero-illustration]');
   if (!stage) return;
@@ -76,7 +72,6 @@ function initHeroScrollAnimation() {
   function update() {
     const rect = stage.getBoundingClientRect();
     const vh = window.innerHeight;
-    // progress: 0 when hero enters viewport bottom, 1 when centered
     const raw = 1 - clamp(rect.top / vh, 0, 1);
     const progress = clamp(raw * 1.15, 0, 1);
 
@@ -100,7 +95,7 @@ function initHeroScrollAnimation() {
   window.addEventListener('resize', update);
 }
 
-/* Contact form -> Formspree (progressive enhancement: works without JS too) */
+/* Contact form → Formspree */
 function initContactForm() {
   const form = document.querySelector('.care-form');
   if (!form) return;
@@ -139,19 +134,17 @@ function initContactForm() {
   });
 }
 
+/* Soft gradient wash — gentle shift on scroll */
+function initGradientWash() {
+  const wash = document.querySelector('.gradient-wash');
+  if (!wash || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-/* Soft ambient shape parallax */
-function initAmbient() {
-  const shapes = document.querySelectorAll('.ambient-shapes span');
-  if (!shapes.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   function update() {
     const y = window.scrollY;
-    shapes.forEach(s => {
-      const depth = parseFloat(s.dataset.depth || '0.2');
-      s.style.transform = `translate3d(0, ${y * depth * 0.35}px, 0)`;
-    });
+    const shift = Math.min(y * 0.04, 80);
+    wash.style.backgroundPosition = `0 ${shift}px, 0 ${-shift * 0.6}px, 50% ${shift * 0.3}px`;
   }
+
   update();
   window.addEventListener('scroll', update, { passive: true });
 }
-document.addEventListener('DOMContentLoaded', initAmbient);

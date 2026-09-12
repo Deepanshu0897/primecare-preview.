@@ -40,7 +40,7 @@ html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
   margin: 0;
   font-family: var(--font-body);
-  background: var(--ivory);
+  background: transparent;
   color: var(--charcoal);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
@@ -127,8 +127,10 @@ textarea:focus-visible {
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 100;
-  background: var(--ivory);
+  z-index: 200;
+  background: rgba(250, 245, 236, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--sand-dark);
 }
 
@@ -241,19 +243,40 @@ textarea:focus-visible {
 @media (max-width: 899px) {
   .nav-links {
     position: fixed;
-    inset: 68px 0 0 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 250;
     background: var(--ivory);
     flex-direction: column;
-    justify-content: flex-start;
-    padding: 2rem var(--edge);
-    gap: 1.6rem;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem var(--edge) 3rem;
+    gap: 1.8rem;
     transform: translateX(100%);
-    transition: transform 0.35s ease;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    list-style: none;
+    margin: 0;
   }
   .nav-links.open { transform: translateX(0); }
-  .nav-links a { font-size: 1.15rem; }
-  .nav-toggle { display: block; }
+  .nav-links a { font-size: 1.35rem; font-weight: 600; }
+  .nav-toggle {
+    display: block;
+    position: relative;
+    z-index: 260;
+  }
   body.menu-open { overflow: hidden; }
+  /* Hamburger → X when open */
+  body.menu-open .nav-toggle span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  body.menu-open .nav-toggle span:nth-child(2) {
+    opacity: 0;
+  }
+  body.menu-open .nav-toggle span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
 }
 
 /* ==========================================================================
@@ -746,7 +769,7 @@ form.care-form { display: flex; flex-direction: column; gap: 1.1rem; }
   display: none;
   position: fixed;
   bottom: 0; left: 0; right: 0;
-  z-index: 90;
+  z-index: 180;
   background: var(--charcoal);
   padding: 0.75rem 1rem;
   box-shadow: 0 -8px 24px rgba(0,0,0,0.18);
@@ -1034,40 +1057,29 @@ form.care-form { display: flex; flex-direction: column; gap: 1.1rem; }
 .footer-areas a:hover { color: var(--ochre) !important; }
 
 
-/* Subtle floating ambient shapes */
-.ambient-shapes {
+/* Soft gradient wash — elegant, calm motion */
+.gradient-wash {
   pointer-events: none;
   position: fixed;
   inset: 0;
   z-index: 0;
   overflow: hidden;
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 20%, rgba(232, 201, 160, 0.35) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 85% 75%, rgba(201, 212, 184, 0.28) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 45% at 50% 50%, rgba(214, 180, 138, 0.18) 0%, transparent 55%);
+  background-color: var(--ivory);
+  will-change: background-position;
+  transition: opacity 0.4s ease;
 }
-.ambient-shapes span {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(60px);
-  opacity: 0.18;
-  will-change: transform;
+@media (prefers-reduced-motion: reduce) {
+  .gradient-wash { background-attachment: scroll; }
 }
-.ambient-shapes .s1 {
-  width: 420px; height: 420px;
-  background: #E8C9A0;
-  top: -80px; left: -100px;
-}
-.ambient-shapes .s2 {
-  width: 340px; height: 340px;
-  background: #C9D4B8;
-  bottom: 10%; right: -80px;
-}
-.ambient-shapes .s3 {
-  width: 280px; height: 280px;
-  background: #D6B48A;
-  top: 45%; left: 55%;
-}
-main, .site-header, .site-footer, .mobile-sticky-cta {
+main, .site-footer {
   position: relative;
   z-index: 1;
 }
+/* header keeps its own sticky + high z-index */
 
 
 /* WhatsApp floating button */
