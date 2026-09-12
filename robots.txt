@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://deepanshu0897.github.io/primecare-preview./sitemap.xml
+Sitemap: https://primecares.ca/sitemap.xml
