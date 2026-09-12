@@ -152,7 +152,7 @@ textarea:focus-visible {
   color: var(--charcoal);
 }
 
-.brand-mark { width: 34px; height: 34px; flex-shrink: 0; }
+.brand-mark { height: 44px; width: auto; max-width: 160px; flex-shrink: 0; object-fit: contain; }
 
 .nav-links {
   display: flex;
@@ -716,3 +716,299 @@ form.care-form { display: flex; flex-direction: column; gap: 1.1rem; }
 .form-status { font-size: 0.9rem; padding: 0.8rem 1rem; border-radius: 10px; display: none; }
 .form-status.success { display: block; background: #EAF0E5; color: var(--sage-deep); }
 .form-status.error { display: block; background: #F6E4DA; color: var(--clay-deep); }
+
+/* ==========================================================================
+   Blog, City Pages, Lead Magnet, Sticky CTA, Expanded Testimonials
+   ========================================================================== */
+
+/* Sticky mobile CTA bar */
+.mobile-sticky-cta {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 90;
+  background: var(--charcoal);
+  padding: 0.75rem 1rem;
+  box-shadow: 0 -8px 24px rgba(0,0,0,0.18);
+  gap: 0.6rem;
+}
+.mobile-sticky-cta a {
+  flex: 1;
+  text-align: center;
+  padding: 0.75rem 0.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-decoration: none;
+}
+.mobile-sticky-cta .sticky-call {
+  background: var(--ochre);
+  color: var(--charcoal);
+}
+.mobile-sticky-cta .sticky-book {
+  background: var(--clay);
+  color: var(--ivory);
+}
+@media (max-width: 899px) {
+  .mobile-sticky-cta { display: flex; }
+  body { padding-bottom: 72px; }
+}
+
+/* Expanded testimonials grid */
+.testimonials-grid {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
+}
+@media (max-width: 900px) { .testimonials-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .testimonials-grid { grid-template-columns: 1fr; } }
+
+.quote-card .quote-meta {
+  font-size: 0.82rem;
+  color: var(--charcoal-soft);
+  margin-top: 0.35rem;
+}
+
+/* Trust stats bar */
+.trust-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 2.5rem;
+  justify-content: center;
+  padding: 1.4rem 0;
+  border-top: 1px solid var(--sand-dark);
+  border-bottom: 1px solid var(--sand-dark);
+  margin: 2rem 0 0;
+}
+.trust-stats .ts-item {
+  text-align: center;
+}
+.trust-stats .ts-item b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--clay-deep);
+}
+.trust-stats .ts-item span {
+  font-size: 0.82rem;
+  color: var(--charcoal-soft);
+}
+
+/* Blog index */
+.blog-grid {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
+}
+@media (max-width: 900px) { .blog-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .blog-grid { grid-template-columns: 1fr; } }
+
+.blog-card {
+  background: var(--cream-card);
+  border: 1px solid var(--sand-dark);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 36px -18px rgba(43,36,29,0.22);
+}
+.blog-card .blog-card-body {
+  padding: 1.5rem 1.6rem 1.7rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.blog-card .blog-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--clay);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.5rem;
+}
+.blog-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.25;
+}
+.blog-card h3 a {
+  text-decoration: none;
+  color: var(--charcoal);
+}
+.blog-card h3 a:hover { color: var(--clay-deep); }
+.blog-card p {
+  font-size: 0.92rem;
+  flex: 1;
+  margin-bottom: 1.1rem;
+}
+.blog-card .blog-meta {
+  font-size: 0.8rem;
+  color: var(--charcoal-soft);
+}
+
+/* Blog article layout */
+.article-hero {
+  padding: clamp(2.5rem, 5vw, 4rem) var(--edge) 2rem;
+  max-width: 780px;
+  margin: 0 auto;
+}
+.article-hero .eyebrow-line { margin-bottom: 0.8rem; }
+.article-body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 var(--edge) clamp(3rem, 6vw, 5rem);
+}
+.article-body h2 {
+  margin-top: 2.4rem;
+  margin-bottom: 0.8rem;
+  font-size: clamp(1.45rem, 2.5vw, 1.75rem);
+}
+.article-body h3 {
+  margin-top: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+.article-body p, .article-body li {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--charcoal-soft);
+}
+.article-body ul, .article-body ol {
+  padding-left: 1.3rem;
+  margin: 0 0 1.4rem;
+}
+.article-body li { margin-bottom: 0.45rem; }
+.article-body strong { color: var(--charcoal); }
+.article-cta {
+  background: var(--sand);
+  border-radius: 18px;
+  padding: 1.8rem 2rem;
+  margin: 2.8rem 0 1rem;
+  text-align: center;
+}
+.article-cta h3 { margin-bottom: 0.5rem; }
+.article-cta p { margin: 0 auto 1.2rem; max-width: 42ch; }
+
+/* City page specific */
+.city-hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 2rem;
+  margin-top: 1.8rem;
+}
+.local-highlights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+@media (max-width: 700px) { .local-highlights { grid-template-columns: 1fr; } }
+.local-card {
+  background: var(--cream-card);
+  border: 1px solid var(--sand-dark);
+  border-radius: 16px;
+  padding: 1.5rem 1.6rem;
+}
+.local-card h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
+
+/* Areas we serve chips on pages */
+.service-areas-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.service-areas-list a {
+  display: inline-block;
+  padding: 0.45rem 1rem;
+  background: var(--cream-card);
+  border: 1px solid var(--sand-dark);
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  transition: all 0.2s ease;
+}
+.service-areas-list a:hover {
+  border-color: var(--clay);
+  color: var(--clay-deep);
+  background: #FFF9F3;
+}
+
+/* Lead magnet section */
+.lead-magnet {
+  background: linear-gradient(145deg, var(--charcoal) 0%, #3d3228 100%);
+  border-radius: 24px;
+  padding: clamp(2rem, 4vw, 3rem);
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+  align-items: center;
+  color: var(--ivory);
+}
+@media (max-width: 800px) { .lead-magnet { grid-template-columns: 1fr; } }
+.lead-magnet h2 { color: var(--ivory); margin-bottom: 0.6rem; }
+.lead-magnet p { color: #D9CFC0; margin-bottom: 1.4rem; }
+.lead-magnet .btn-on-dark { display: inline-flex; }
+.lead-magnet-visual {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  padding: 1.8rem;
+  text-align: center;
+}
+.lead-magnet-visual .pdf-icon {
+  font-size: 2.8rem;
+  margin-bottom: 0.6rem;
+}
+.lead-magnet-visual span {
+  display: block;
+  font-size: 0.9rem;
+  color: #C9BEAE;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 1.2rem var(--edge) 0;
+  font-size: 0.85rem;
+  color: var(--charcoal-soft);
+}
+.breadcrumb a { color: var(--charcoal-soft); text-decoration: none; }
+.breadcrumb a:hover { color: var(--clay); }
+.breadcrumb span { margin: 0 0.4rem; opacity: 0.5; }
+
+/* Page header for inner pages */
+.page-header {
+  padding: clamp(2.2rem, 5vw, 3.5rem) var(--edge) 1.5rem;
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.page-header h1 { margin-bottom: 0.6rem; }
+.page-header .lede { font-size: 1.12rem; max-width: 54ch; }
+
+/* Footer areas expansion */
+.footer-areas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.7rem;
+  margin-top: 0.6rem;
+}
+.footer-areas a {
+  font-size: 0.8rem !important;
+  color: #A69A87 !important;
+}
+.footer-areas a:hover { color: var(--ochre) !important; }
